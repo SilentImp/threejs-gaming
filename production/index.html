@@ -1,0 +1,147 @@
+<!DOCTYPE html><html lang="ru"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"><title>Создание игр использую WebGL и Three.js</title><link href="css/styles.css" rel="stylesheet"><script data-main="js/presentation" src="js/require.js"> </script></head><body><form action="/select/slide" method="post" class="go-to-page"><firldset><input type="text" maxlength="3" value="" placeholder="1"></firldset></form><section class="progress"><div class="value"></div></section><section id="slides" class="dark"><article class="toy1"></article><article class="toy2"></article><article class="toy3"></article><article class="center cover cloud"><h1> <div class="wrapper">делайте игрушки на WebGL</div></h1></article><article class="center cover cloud"><h1> <div class="wrapper">ну пожа-а-а-а-а-а-а-луйста</div></h1></article><article class="center qrcode"><div class="wrapper"><img src="img/khronos.png" alt="логотип" class="link"><img src="svg/khronos.svg" alt="QRCODE cо ссылкой на khronos" class="link"><p>http://www.khronos.org/</p></div></article><article class="center qrcode"><div class="wrapper"><img src="img/webgl.png" alt="логотип" class="link"><img src="svg/webgl.svg" alt="QRCODE cо ссылкой на webgl" class="link"><p>http://goo.gl/hyJ8Y0</p></div></article><article class="center qrcode"><div class="wrapper"><img src="img/collada.png" alt="логотип" class="link"><img src="svg/collada.svg" alt="QRCODE cо ссылкой на collada" class="link"><p>http://goo.gl/IkcI3z</p></div></article><article class="center qrcode"><div class="wrapper"><div class="half"><h2>The OpenGL ES Shading Language 3.1</h2></div><img src="svg/opengles.svg" alt="QRCODE cо ссылкой на collada" class="link"><p>http://goo.gl/u5dFg0</p></div></article><article class="center support"><div class="wrapper"><ul class="half"><li>IE 11+</li><li>FF 4+</li><li>Chrome 8+</li><li>Opera 12.0 +</li><li class="wtf">Safari 5.1+ </li></ul><ul class="half"><li class="wtf">iOS Safari ???</li><li class="no">Opera Mini -</li><li>Opera Mobile 12+</li><li class="no">Android Browser -</li><li>Blackberry Browse 10+</li><li>Firefox for Android 26+</li><li class="no">IE Mobile</li></ul></div></article><article class="center qrcode"><div class="wrapper"><img src="svg/caniusewebgl.svg" alt="QRCODE cо ссылкой на http://get.webgl.org/" class="link"><p>http://get.webgl.org/</p></div></article><article class="center cloud math-is-hard dictor"><h1><div class="wrapper">Math is hard?</div></h1></article><article class="center cloud threejs dictor"><h1> three.js!</h1></article><article class="center qrcode"><div class="wrapper"><img src="svg/threejs-editor.svg" alt="QRCODE cо ссылкой на threejs-editor" class="link"><p>threejs.org</p></div></article><article class="center"><div class="wrapper"><ul><li>Math is hard (© Barbie)</li><li>Разрабатывается с 2010 года</li><li>Сильное комьюнити</li><li>Достаточный объем материалов для изучения</li><li>Возможность использования Wavefront (.obj) и Collada (.dae)</li></ul></div></article><article class="center cloud start"><h1><div class="wrapper">Инициализация проекта</div></h1></article><article class="center qrcode"><div class="wrapper"><img src="svg/yeoman.svg" alt="QRCODE cо ссылкой на yeoman"><p>http://yeoman.io/</p></div></article><article class="center"><div class="wrapper"><div class="one-third"><img src="img/yo.jpg" alt="Yo"><h2>Yo</h2></div><div class="one-third"><img src="svg/grunt.svg" alt="Grunt"><h2>Grunt</h2></div><div class="one-third"><img src="svg/bower.svg" alt="Bower"><h2>Bower</h2></div></div></article><article class="center code-0"><div class="wrapper"><pre><code class="bash">$ npm install -g yo</code></pre></div></article><article class="center qrcode"><div class="wrapper"><div class="half"><h2>Генератор Yeoman для проекта с использованием three.js</h2></div><img src="svg/generator-threejs-boilerplate.svg" alt="QRCODE cо ссылкой на generator-threejs-boilerplate" class="link"><p class="title">threejs-boilerplate</p><p>http://goo.gl/qSdClz</p></div></article><article class="center code-2"><div class="wrapper"><pre><code class="bash">$ npm install -g 
+  generator-threejs-boilerplate
+$ yo threejs-boilerplate</code></pre></div></article><article class="center code-4"><div class="wrapper"><pre><code class="bash">[?] Would you the default one? (Y/n) n
+[?] Would you like to add require.js? (Y/n) 
+[?] Would you like to support webgl detection? (Y/n)
+[?] Would you like to support window resize? (Y/n)
+    create Makefile
+    create index.html
+    create vendor/three.js/build/three.js
+    create vendor/threex.windowresize.js
+    create vendor/three.js/examples/js/Detector.js
+    create vendor/require.js/require.js</code></pre></div></article><article class="center code-3"><div class="wrapper"><pre><code class="bash">index.html
+Makefile
+vendor/
+    threex.windowresize.js
+    require.js/
+        require.js
+    three.js/
+        build/
+            three.js
+        examples/js/
+            Detector.js</code></pre></div></article><article class="center screenshot"><div class="wrapper"><img src="img/threejs-boilerplate.png" alt="Скриншот" class="link"></div></article><article class="center qrcode bower"><div class="wrapper"><div class="half"><h2>Bower</h2></div><div class="half"><img src="svg/bower.svg" alt="QRCODE cо ссылкой на bower"></div><p>http://bower.io/</p></div></article><article class="center code-2"><div class="wrapper"><pre><code class="bash">$ npm install -g bower</code></pre></div></article><article class="center qrcode"><div class="wrapper"><div class="half"><h2>Пакет Bower содержащий three.js</h2></div><img src="svg/bower-threejs.svg" alt="QRCODE cо ссылкой на bower threejs" class="link"><p class="title">threejs</p><p>http://goo.gl/Q9XkQv</p></div></article><article class="center code-2"><div class="wrapper"><pre><code class="bash">$ bower install threejs</code></pre></div></article><article class="center code-1"><div class="wrapper"><pre><code class="bash">bower_components/
+    threejs/
+        build/
+            three.js</code></pre></div></article><article class="center code-2"><div class="wrapper"><pre><code>&lt;script src=&quot;bower_components/
+	threejs/
+	build/three.js&quot;&gt;
+&lt;/script&gt;</code></pre></div></article><article class="center code-1"><div class="wrapper"><pre><code>&lt;canvas id=&quot;screen&quot;&gt;&lt;/canvas&gt;</code></pre></div></article><article class="center code-4"><div class="wrapper"><pre><code class="javascript">var scene = new THREE.Scene();
+   camera = new THREE.PerspectiveCamera(
+	63, 4/3, 0.1, 1000
+	),
+ geometry = new THREE.CubeGeometry(.5, .5, .5),
+ material = new THREE.MeshNormalMaterial(),
+     cube = new THREE.Mesh(geometry, material),
+ renderer = new THREE.WebGLRenderer({
+	canvas: document.getElementById(&quot;screen&quot;),
+	antialias: true
+	});</code></pre></div></article><article class="center code-1"><div class="wrapper"><pre><code class="javascript">Scene(
+	fog,
+	overrideMaterial,
+	autoUpdate)</code></pre></div></article><article class="center code-1"><div class="wrapper"><pre><code class="javascript">PerspectiveCamera(
+		  fov,
+		  aspect,
+		  near,
+		  far)</code></pre></div></article><article class="center code-1"><div class="wrapper"><pre><code class="javascript">CubeGeometry(
+	width,
+	height,
+	depth,
+	widthSegments,
+	heightSegments,
+	depthSegments)</code></pre></div></article><article class="center code-2"><div class="wrapper"><pre><code class="javascript">MeshNormalMaterial({
+	morphTargets,
+	shading,
+	wireframe,
+	wireframeLinewidth
+	})</code></pre></div></article><article class="center code-1"><div class="wrapper"><pre><code class="javascript">Mesh(geometry, material)</code></pre></div></article><article class="center code-2"><div class="wrapper"><pre><code class="javascript">WebGLRenderer(
+	canvas,
+	precision,
+	alpha,
+	premultipliedAlpha,
+	antialias,
+	stencil,
+	preserveDrawingBuffer,
+	maxLights)</code></pre></div></article><article class="center code-2"><div class="wrapper"><pre><code class="javascript">renderer.setSize(600, 400);
+scene.add(cube);
+camera.position.x = 0;
+camera.position.y = 1;
+camera.position.z = 2;
+camera.lookAt(cube.position);</code></pre></div></article><article class="center code-3"><div class="wrapper"><pre><code class="javascript">function render() {
+	cube.rotation.y += .05;
+	requestAnimationFrame(render);
+	renderer.render(scene, camera);
+}
+render();</code></pre></div></article><article><canvas id="demo-1"></canvas></article><article class="center qrcode"><div class="wrapper"><div class="half"><h2>Пакет Bower содержащий Three.js бутстрап</h2></div><img src="svg/threestrap.svg" alt="QRCODE cо ссылкой на bower threestrap" class="link"><p class="title">threestrap</p><p>http://goo.gl/0GiKKP</p></div></article><article class="center code-2"><div class="wrapper"><pre><code class="bash">$ bower install threestrap</code></pre></div></article><article class="center code-2"><div class="wrapper"><pre><code class="bash">bower_components/
+    threestrap/
+        build/
+            threestrap.js
+            threestrap-core.js
+            threestrap-extra.js</code></pre></div></article><article class="center threestrap-list"><div class="wrapper"><div class="one-third"><h2>Empty</h2><ul><li>renderer</li><li>bind</li><li>size</li><li>fill</li><li>loop</li><li>time</li></ul></div><div class="one-third"><h2>Core</h2><ul><li>scene</li><li>camera</li><li>render</li></ul></div><div class="one-third"><h2>Extra</h2><ul><li>stats</li><li>controls</li></ul></div></div></article><article class="center code-2"><div class="wrapper"><pre><code>&lt;script src=&quot;bower_components/
+	threestrap/
+	build/threestrap.js&quot;&gt;
+&lt;/script&gt;</code></pre></div></article><article class="center code-4"><div class="wrapper"><pre><code class="javascript">var three = THREE.Bootstrap({
+	element: document.querySelector(&quot;#screen&quot;)
+	}),
+    geometry = new THREE.CubeGeometry(.5, .5, .5),
+    material = new THREE.MeshNormalMaterial(),
+    cube = new THREE.Mesh(geometry, material);</code></pre></div></article><article class="center code-3"><div class="wrapper"><pre><code class="javascript">three.scene.add(cube);
+three.camera.position.set(0, 1, 2);
+three.camera.lookAt(cube.position);
+three.on(&quot;update&quot;, function () {
+	cube.rotation.y += .05;
+});</code></pre></div></article><article id="demo-2"></article><article class="center qrcode"><div class="wrapper"><div class="half"><h2>Плагин Grunt для получения JavaScript кода GLSL шейдеров </h2></div><img src="svg/grunt-glsl-threejs.svg" alt="QRCODE cо ссылкой на glsl-threejs" class="link"><p class="title">glsl-threejs</p><p>http://goo.gl/K4ssEr</p></div></article><article class="center code-2"><div class="wrapper"><pre><code class="bash">$ npm install grunt-glsl-threejs</code></pre></div></article><article class="center photo cloud"><h1><div class="wrapper">Я жажду фото-<br>реализма!</div></h1></article><article class="center code-3"><div class="wrapper"><pre><code class="javascript">var texture = THREE.ImageUtils.loadTexture(
+	&quot;img/box.png&quot;
+);
+var cube = new THREE.Mesh(
+	geometry, 
+	new THREE.MeshPhongMaterial({
+		map: texture
+	}));</code></pre></div></article><article id="demo-5"><iframe src="examples/textures/box.html"></iframe></article><article class="center photo cloud"><h1><div class="wrapper">А если<br>грани<br>куба — <br>разные?</div></h1></article><article class="center code-5"><div class="wrapper"><pre><code>var texture1 = THREE.ImageUtils.loadTexture(&quot;img/t1.png&quot;),
+    texture2 = THREE.ImageUtils.loadTexture(&quot;img/t2.png&quot;),
+    texture3 = THREE.ImageUtils.loadTexture(&quot;img/t3.png&quot;),
+    top_side = new THREE.MeshPhongMaterial({map: texture1}),
+    side_side = new THREE.MeshPhongMaterial({map: texture2}),
+    other_side = new THREE.MeshPhongMaterial({map: texture3});</code></pre></div></article><article class="center code-3"><div class="wrapper"><pre><code class="javascript">var material = new THREE.MeshFaceMaterial([
+	side_side,
+	side_side,
+	top_side,  //top
+	other_side, //bottom
+	other_side,
+	other_side
+	]),
+    cube = new THREE.Mesh(geometry, material);</code></pre></div></article><article id="demo-box"><iframe src="examples/textures/index.html"></iframe></article><article class="center cloud wireframe dictor dictor2"><h1><div class="wrapper">Хочу что-то менее тривиальное!</div></h1></article><article class="center qrcode"><div class="wrapper"><div class="half"><h2>Загрузка из формата COLLADA</h2></div><img src="svg/collada2threejs.svg" alt="QRCODE cо ссылкой на Collada-Import-Three.js" class="link"><p class="title">Collada-Import-Three.js</p><p>http://goo.gl/7JEXnV</p></div></article><article class="center code-3"><div class="wrapper"><pre><code>var loader = new THREE.ColladaLoader();
+    loader.load(
+	&quot;collada/model2.dae&quot;, 
+	modelLoaded);</code></pre></div></article><article class="center code-2"><div class="wrapper"><pre><code>function modelLoaded(result){
+	collada = result.scene;
+	scene.add(collada);
+	render();
+}</code></pre></div></article><article class="center code-1"><div class="wrapper"><pre><code>result.dae.images
+result.dae.geometries
+result.dae.materials</code></pre></div></article><article><iframe src="examples/collada/index.html"></iframe></article><article class="center qrcode"><div class="wrapper"><div class="half"><h2>Плагин Grunt для конвертации .OBJ в .JSON</h2></div><img src="svg/grunt-three-obj.svg" alt="QRCODE cо ссылкой на glsl-threejs" class="link"><p class="title">grunt-three-obj</p><p>http://goo.gl/rTauLO</p></div></article><article class="center code-3"><div class="wrapper"><pre><code class="bash">$ npm install grunt-three-obj --save-dev</code></pre></div></article><article class="center code-3"><div class="wrapper"><pre><code class="bash">module.exports = (grunt)-&gt;
+	grunt.initConfig(
+		three_obj:
+		dist:
+		src: [&quot;./obj/*.obj&quot;],
+		dest: &quot;./json/&quot;
+	)
+	grunt.loadNpmTasks 
+		&quot;grunt-three-obj&quot;
+	grunt.registerTask 
+		&quot;default&quot;, 
+		[&quot;three_obj&quot;]</code></pre></div></article><article class="center code-1"><div class="wrapper"><pre><code class="bash">$ grunt</code></pre></div></article><article class="center code-3"><div class="wrapper"><pre><code>var json_loader = new THREE.JSONLoader(),
+    model = null;
+json_loader.load(
+	&quot;examples/model/json/human.js&quot;, 
+	modelLoaded, 
+	&quot;examples/model/json/&quot;);</code></pre></div></article><article class="center code-4"><div class="wrapper"><pre><code class="javascript">function modelLoaded(geometry, materials){
+	model = new THREE.Mesh(
+		geometry, 
+		new THREE.MeshNormalMaterial());
+	model.position.z = 10;
+	model.position.y = -8;
+	scene.add(model);
+	camera.lookAt(
+		new THREE.Vector3(0,0,0)
+	);
+}</code></pre></div></article><article><iframe src="examples/json/index.html"></iframe></article><article class="center qrcode"><div class="wrapper"><div class="half"><h2>Плагины для экспорта в JSON из Blender, Maya, 3Ds MAX</h2></div><img src="svg/exporters.svg" alt="QRCODE cо ссылкой на glsl-threejs" class="link"><p>http://goo.gl/6bnan4</p></div></article><article class="center"><div class="wrapper"><h1>Откуда брать модели</h1></div></article><article class="center screenshot"><div class="wrapper"><img src="img/screen-blender.png" alt="Скриншот" class="link"></div></article><article class="center qrcode"><div class="wrapper"><img src="svg/grunt-glsl-threejs.svg" alt="QRCODE cо ссылкой на blender" class="link"><p>http://blender.org/</p></div></article><article class="center screenshot"><div class="wrapper"><img src="img/screen-makehuman.png" alt="Скриншот" class="link"></div></article><article class="center qrcode"><div class="wrapper"><img src="svg/grunt-glsl-threejs.svg" alt="QRCODE cо ссылкой на www.makehuman.org" class="link"><p>http://makehuman.org/</p></div></article><article class="center screenshot"><div class="wrapper"><img src="img/screen-threejs-editor.png" alt="Скриншот" class="link"></div></article><article class="center qrcode"><div class="wrapper"><img src="svg/threejs-editor.svg" alt="QRCODE cо ссылкой на threejs-editor" class="link"><p>http://threejs.org/editor/</p></div></article><article class="center"><div class="wrapper"><h1>Анимация</h1></div></article><article class="center"><div class="wrapper"><h1>Откуда брать mocap</h1></div></article><article class="center"><div class="wrapper"><h1>Физика</h1></div></article><article class="center"><div class="wrapper"><h1>Пример игры</h1></div></article><article class="contacts center qrcode"><div class="wrapper"><div class="about-speaker"><p class="name">Антон Немцев</p><p class="twitter">@silentimp</p><p class="email">thesilentimp@gmail.com</p><p class="skype">skype: ravencry</p></div><img src="svg/git.svg" alt="QRCODE cо ссылкой на доклад" class="link"><p>http://goo.gl/fTe3ga</p></div></article></section></body></html>

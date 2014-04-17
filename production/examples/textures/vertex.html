@@ -1,0 +1,121 @@
+ // map.mapping = THREE.UVMapping();
+        // map.wrapS = THREE.MirroredRepeatWrapping;
+        // map.wrapT = THREE.MirroredRepeatWrapping;
+        // map.repeat.set(2,2);
+        // map.offset.set(0, -1.334);
+
+        // map1 = THREE.ImageUtils.loadTexture('img/t1.png');
+        // map2 = THREE.ImageUtils.loadTexture('img/t2.png');
+        // map3 = THREE.ImageUtils.loadTexture('img/t3.png');
+
+        // mat1 = new THREE.MeshPhongMaterial({map: map1});
+        // mat2 = new THREE.MeshPhongMaterial({map: map2});
+        // mat3 = new THREE.MeshPhongMaterial({map: map3});
+
+        // materials = [mat1, mat2, mat3];
+
+        // meshFaceMaterial = new THREE.MeshFaceMaterial( map);
+
+    // this.humanGeometry = new THREE.CubeGeometry(1,2,1) ;
+ 
+    /* Adjust the UV's to handle the single texture */
+    // var faceVertexUvs = this.humanGeometry.faceVertexUvs[0] ;
+ 
+    // First Row (Black/Blue)
+ 
+    // faceVertexUvs[0][0].x = 0.0 ;       // 0.0
+    // faceVertexUvs[0][0].y = 1.0 ;       // 1.0
+
+    // faceVertexUvs[0][1].x = 0.0 ;       // 0.0
+    // faceVertexUvs[0][1].y = 0.50 ;      // 0.0
+    
+    // faceVertexUvs[0][2].x = 0.25 ;      // 1.0
+    // faceVertexUvs[0][2].y = 1.0 ;       // 1.0
+ 
+    // faceVertexUvs[1][0].x = 0.0 ;       // 0.0
+    // faceVertexUvs[1][0].y = 0.50 ;      // 0.0
+    // faceVertexUvs[1][1].x = 0.25 ;      // 1.0
+    // faceVertexUvs[1][1].y = 0.50 ;      // 0.0
+    
+    // faceVertexUvs[1][2].x = 0.25 ;      // 1.0
+    // faceVertexUvs[1][2].y = 1.0 ;       // 1.0
+ 
+    // // First Row Bottom (Yellow/Purple)
+ 
+    // faceVertexUvs[2][0].x = 0.0 ;       // 0.0
+    // faceVertexUvs[2][0].y = 0.5 ;       // 1.0
+    // faceVertexUvs[2][1].x = 0.0 ;       // 0.0
+    // faceVertexUvs[2][1].y = 0.0 ;       // 0.0
+    // faceVertexUvs[2][2].x = 0.25 ;       // 1.0
+    // faceVertexUvs[2][2].y = 0.5 ;       // 1.0
+ 
+    // faceVertexUvs[3][0].x = 0.0 ;       // 0.0
+    // faceVertexUvs[3][0].y = 0.0 ;       // 0.0
+    // faceVertexUvs[3][1].x = 0.25 ;       // 1.0
+    // faceVertexUvs[3][1].y = 0.0 ;       // 0.02
+    // faceVertexUvs[3][2].x = 0.25 ;       // 1.0
+    // faceVertexUvs[3][2].y = 0.5 ;       // 1.0
+ 
+    // Second row - Top of Cube
+ 
+    // faceVertexUvs[4][0].x = 0.25 ;       // 0.0
+    // faceVertexUvs[4][0].y = 1.0 ;       // 1.0
+    // faceVertexUvs[4][1].x = 0.25 ;       // 0.0
+    // faceVertexUvs[4][1].y = 0.75 ;       // 0.0
+    // faceVertexUvs[4][2].x = 0.5 ;       // 1.0
+    // faceVertexUvs[4][2].y = 1.0 ;       // 1.0
+ 
+    // faceVertexUvs[5][0].x = 0.25 ;       // 0.0
+    // faceVertexUvs[5][0].y = 0.75 ;       // 0.0
+    // faceVertexUvs[5][1].x = 0.50 ;       // 1.0
+    // faceVertexUvs[5][1].y = 0.75 ;       // 0.0
+    // faceVertexUvs[5][2].x = 0.5 ;       // 1.0
+    // faceVertexUvs[5][2].y = 1.0 ;       // 1.0
+ 
+    // Second row - Bottom Of Cube
+ 
+//    faceVertexUvs[6][0].x = 0.25 ;       // 0.0
+//    faceVertexUvs[6][0].y = 1.0 ;       // 1.0
+//    faceVertexUvs[6][1].x = 0.25 ;       // 0.0
+//    faceVertexUvs[6][1].y = 0.5 ;       // 0.0
+//    faceVertexUvs[6][2].x = 0.5 ;       // 1.0
+//    faceVertexUvs[6][2].y = 1.0 ;       // 1.0
+ 
+//    faceVertexUvs[7][0].x = 0.25 ;       // 0.0
+//    faceVertexUvs[7][0].y = 0.50 ;       // 0.0
+//    faceVertexUvs[7][1].x = 0.50 ;       // 1.0
+//    faceVertexUvs[7][1].y = 0.50 ;       // 0.0
+//    faceVertexUvs[7][2].x = 0.5 ;       // 1.0
+//    faceVertexUvs[7][2].y = 1.0 ;       // 1.0
+ 
+    // Third Row
+ 
+    // faceVertexUvs[8][0].x = 0.5 ;       // 0.0
+    // faceVertexUvs[8][0].y = 1.0 ;       // 1.0
+    // faceVertexUvs[8][1].x = 0.5 ;       // 0.0
+    // faceVertexUvs[8][1].y = 0.5 ;       // 0.0
+    // faceVertexUvs[8][2].x = 0.75 ;       // 1.0
+    // faceVertexUvs[8][2].y = 1.0 ;       // 1.0
+ 
+    // faceVertexUvs[9][0].x = 0.50 ;       // 0.0
+    // faceVertexUvs[9][0].y = 0.50 ;       // 0.0
+    // faceVertexUvs[9][1].x = 0.75 ;       // 1.0
+    // faceVertexUvs[9][1].y = 0.50 ;       // 0.0
+    // faceVertexUvs[9][2].x = 0.75 ;       // 1.0
+    // faceVertexUvs[9][2].y = 1.0 ;       // 1.0
+ 
+    // // Third Row - Bottom
+ 
+    // faceVertexUvs[10][0].x = 0.5 ;       // 0.0
+    // faceVertexUvs[10][0].y = 0.5 ;       // 1.0
+    // faceVertexUvs[10][1].x = 0.5 ;       // 0.0
+    // faceVertexUvs[10][1].y = 0.0 ;       // 0.0
+    // faceVertexUvs[10][2].x = 0.75 ;       // 1.0
+    // faceVertexUvs[10][2].y = 0.5 ;       // 1.0
+ 
+    // faceVertexUvs[11][0].x = 0.50 ;       // 0.0
+    // faceVertexUvs[11][0].y = 0.0 ;       // 0.0
+    // faceVertexUvs[11][1].x = 0.75 ;       // 1.0
+    // faceVertexUvs[11][1].y = 0.0 ;       // 0.0
+    // faceVertexUvs[11][2].x = 0.75 ;       // 1.0
+    // faceVertexUvs[11][2].y = 0.5 ;       // 1.0

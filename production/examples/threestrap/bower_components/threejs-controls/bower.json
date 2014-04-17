@@ -1,0 +1,11 @@
+{
+  "name": "threejs-controls",
+  "version": "0.0.66",
+  "description": "Three.js controls",
+  "keywords": [
+    "threejs",
+    "controls",
+    "three.js"
+  ],
+  "license": "MIT"
+}

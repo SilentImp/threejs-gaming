@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="bower_components/threejs/build/three.js"></script>
+  <script src="js/ColladaLoader.js"></script>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+      }
+    #screen{
+      width: 600px;
+      height: 400px;
+      background-color: #ccc;
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      margin: auto;
+      }
+  </style>
+</head>
+<body>
+  <canvas id="screen"></canvas>
+  <script>
+    var angle = .05,
+        scene = new THREE.Scene(),
+        camera = new THREE.PerspectiveCamera(63, 4/3, 0.1, 1000),
+        renderer = new THREE.WebGLRenderer({
+          canvas: document.getElementById("screen"),
+          antialias: true
+        }),
+        collada_loader = new THREE.ColladaLoader();
+
+        camera.position.x = 0;
+        camera.position.y = 0;
+        camera.position.z = -2;
+        camera.lookAt(new THREE.Vector3(0,1,0));
+
+        var light = new THREE.HemisphereLight(0xffffff, 0x333333, .75);
+        scene.add(light);
+
+        collada = null;
+        collada_loader.load('dae/human.dae', modelLoaded);
+        renderer.setSize(800, 600);
+
+        function render() {
+          if(collada!=null){
+            collada.rotation.z+=.05;
+          }
+          requestAnimationFrame(render);
+          renderer.render(scene, camera);
+        }
+
+        function modelLoaded(result){
+          collada = result.scene;
+          scene.add(collada);
+
+
+          collada.rotation.x = -90;
+          
+          console.dir(result)
+          var loadedScene    = result.dae.scene;      // The whole loaded THREE.Scene (same as above, alias)
+          var loadedImages    = result.dae.images;     // Array of loaded THREE.Texture objects
+          var loadedGemetries = result.dae.geometries; // Array of loaded THREE.Geometry objects
+          var loadedMaterials = result.dae.materials;  // Array of loaded THREE.Material objects
+
+          console.log(result.dae.images)
+          // console.log(loadedGemetries);
+          // console.log(loadedMaterials);
+
+          
+
+          // scene.add(
+          //   new THREE.Mesh(loadedGemetries['human-mesh'], 
+          //   new THREE.MeshFaceMaterial([loadedMaterials['young_asian_male_sweat-material']])
+          //   ));
+          
+          render();
+        }
+
+  </script>
+</body>
+</html>

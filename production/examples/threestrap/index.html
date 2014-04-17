@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="bower_components/threejs/build/three.js"></script>
+  <script src="bower_components/threestrap/build/threestrap.js"></script>
+  <script src="bower_components/threejs-controls/controls/OrbitControls.js"></script>
+  
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+      }
+    #screen{
+      width:600px;
+      height: 400px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      margin: auto;
+      }
+  </style>
+</head>
+<body>
+  <div id="screen"></div>
+  <script>
+  
+    var three = THREE.Bootstrap({
+          element: document.querySelector('#screen')
+          }),
+        geometry = new THREE.CubeGeometry(.5, .5, .5),
+        material = new THREE.MeshNormalMaterial(),
+        cube = new THREE.Mesh(geometry, material);
+
+    three.scene.add(cube);
+    three.camera.position.set(0, 1, 2);
+    three.camera.lookAt(cube.position);
+    three.on('update', function () {
+      cube.rotation.y += .05;
+    });
+
+  </script>
+</body>
+</html>
