@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Small game</title>
+  <script src="js/three.min.js"></script>
+  <script src="js/ColladaLoader.js"></script>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+      }
+    #screen{
+      width: 800px;
+      height: 600px;
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      margin: auto;
+      }
+    #life{
+      width: 80px;
+      height: 2px;
+      padding: 1px;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+      background: #FFF;
+      z-index: 800;
+      }
+    #life_value{
+      background-color: #d00;
+      width: 100%;
+      height: 2px;
+      transition: width .25s;
+      }
+    #scrore_value{
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      width: 50px;
+      height: 50px;
+      text-align: center;
+      line-height: 50px;
+      background-color: #5830db;
+      color: #fff;
+      text-transform: uppercase;
+      white-space: nowrap;
+      font-family: sans-serif;
+      font-size: 12px;
+      }
+    #start_scr{
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      line-height: 100vh;
+      background: #ab33db;
+      z-index: 1001;
+      text-align: center;
+      text-transform: uppercase;
+      color: #fff;
+      font-size: 48px;
+      font-family: sans-serif;
+      cursor: pointer;
+      }
+  </style>
+
+</head>
+<body>
+  <div id="start_scr">play</div>
+  <span id="scrore_value">0</span>
+  <div id="life"><div id="life_value" style="width:100%;"></div></div>
+  <div id="screen"></div>
+
+  <script>
+
+
+
+    function initScene(){
+      game = false;
+      rollRight = false;
+      rollLeft = false;
+      start_scrn = document.getElementById('start_scr');
+      life = 100;
+      life_progress = document.getElementById("life_value");
+      score = 0;
+      scrore_value = document.getElementById("scrore_value");
+      rocks = [];
+      deleteFromList = [];
+      rock = null;
+      planet = null;
+      moon = null;
+      renderer = new THREE.WebGLRenderer({ antialias: true });
+      renderer.setSize(800, 600);
+
+    
+      document.getElementById('screen').appendChild(renderer.domElement);
+      document.addEventListener("keydown", arrowsDown);
+      document.addEventListener("keyup", arrowsUp);
+      start_scrn.addEventListener("click", startGame);
+
+      scene = new THREE.Scene;
+      camera = new THREE.PerspectiveCamera(63, 4/3, 0.1, 1000);
+      camera.position.set(0, 0, 9);
+      camera.lookAt(new THREE.Vector3(0,0,0));
+      scene.add(camera);
+      shield = new THREE.Object3D();
+      sphere = new THREE.SphereGeometry(2, 8, 8, 0, Math.PI*2, 0, Math.PI/7) 
+      shield_mesh = new THREE.Mesh(
+        sphere, 
+        new THREE.MeshNormalMaterial({wireframe: true}));
+      
+      shield.add(shield_mesh);
+
+
+      // var geometry_cube = new THREE.CubeGeometry( 1.7, .4, 1.7 );
+      // var material_cube = new THREE.MeshNormalMaterial();
+      // var cube = new THREE.Mesh(geometry_cube, material_cube);
+      // cube.material.alphaTest = 1;
+      // cube.material.opacity = 0;
+      // cube.position.y = 1.8;
+      // shield.add(cube);
+
+      scene.add(shield);
+
+      json_loader = new THREE.JSONLoader();
+      json_loader.load('json/planet.js', modelLoaded);
+      json_loader.load('json/rock.js', rockLoaded);
+      json_loader.load('json/moon.js', moonLoaded);
+
+      renderer.render(scene, camera);
+      requestAnimationFrame(render);
+    };
+
+    function startGame(){
+      rockTimer = null;
+      life = 100;
+      score = 0;
+      rocks = [];
+      deleteFromList = [];
+      life_progress.style.width = 100+"%"
+      scrore_value.innerHTML = 0;
+      rollRight = false;
+      rollLeft = false;
+      game = true;
+      start_scrn.style.display = "none";
+      createRock();
+      window.clearTimeout(rockTimer);
+      rockTimer = window.setTimeout(newRocks, (Math.random()*4000)+1500);
+      requestAnimationFrame(render);
+    };
+
+    window.onload = initScene;
+
+    function arrowsDown(event){
+      var larr = 37,
+          rarr = 39;
+      switch(event.which){
+        case 37:
+        rollLeft = true;
+        break;
+        case 39:
+        rollRight = true;
+        break;
+      }
+    }
+
+    function arrowsUp(event){
+      var larr = 37,
+          rarr = 39;
+      switch(event.which){
+        case 37:
+        rollLeft = false;
+        break;
+        case 39:
+        rollRight = false;
+        break;
+      }
+    }
+
+    function detectCollision(rocks, index){
+      var rock = rocks[index].children[0];
+      var ray = new THREE.Ray(
+        planet.position, 
+        rock.position
+        );
+      var distance = ray.distanceToPoint(rock.position);
+
+      if (
+          (distance <= 2.8) &&
+          (Math.abs((rocks[index].rotation.z%(Math.PI*2))-(shield.rotation.z%(Math.PI*2)))<=Math.PI/7)
+      ) {
+        score++;
+        rocks[index].dir=-1;
+        scrore_value.innerHTML = score;
+        deleteFromList.push({obj:rocks[index], index:index});
+        return;
+      }
+
+      if (distance < 1 ) {
+        deleteFromList.push({obj:rocks[index], index:index});
+        endgame();
+      };
+
+    }
+
+    function endgame(){
+
+      life = Math.max(0,life-30);
+      life_progress.style.width = life+"%";
+      if(life==0){
+        if(typeof(rockTimer)!= "undefined" && rockTimer!=null){
+          window.clearTimeout(rockTimer);
+        }
+        game = false;
+        start_scrn.style.display = "block";
+        index = rocks.length;
+        while(index--){
+          scene.remove(rocks[index]);  
+          rocks.splice(index,1);  
+        }
+        index = deleteFromList.length;
+        while(index--){
+          rocks.splice(deleteFromList[index].index,1);
+          scene.remove(deleteFromList[index].obj);  
+          deleteFromList.splice(index,1);      
+        }
+      }
+    }
+
+
+    function render() {
+
+      if(game===false){
+        return;
+      }
+
+      if(rollRight===true){
+        shield.rotation.z-=.05;
+      }
+
+      if(rollLeft===true){
+        shield.rotation.z+=.05;
+      }
+
+      if(rock!=null){
+        index = rocks.length;
+        while(index--){
+          rocks[index].children[0].position.y=Math.max(rocks[index].children[0].position.y-1/60,0);
+
+          if(rocks[index].side==0){
+            rocks[index].rotation.z -= .005;
+          }else{
+            rocks[index].rotation.z += .005;
+          }
+          detectCollision(rocks, index);
+        }
+
+      }
+
+      index = deleteFromList.length;
+      while(index--){
+        rocks.splice(deleteFromList[index].index,1);
+        scene.remove(deleteFromList[index].obj);  
+        deleteFromList.splice(index,1);      
+      }
+
+      if(planet!=null){
+        planet.rotation.x+=.001;
+        planet.rotation.y+=.001;
+        }
+      
+      if(moon!=null){
+        moon.rotation.z+=.01;
+        }
+
+      renderer.render(scene, camera);
+      requestAnimationFrame(render);
+    };
+
+    function moonLoaded(geometry, materials){
+      moon = new THREE.Object3D();
+      moon.add(new THREE.Mesh(geometry, new THREE.MeshNormalMaterial()));
+      scene.add(moon);
+    }
+
+    function rockLoaded(geometry, materials){
+      rock = geometry;
+    }
+
+    function newRocks(){
+      if(game===false){
+        return;
+      }
+      createRock();
+      timer = (Math.random()*4000)+1500;
+      window.setTimeout(newRocks, timer);
+    }
+
+    function createRock(){
+      var rock_direction = new THREE.Object3D(),
+          my_rock = new THREE.Mesh(rock, new THREE.MeshNormalMaterial());
+
+      my_rock.scale.x = 0.4;
+      my_rock.scale.y = 0.4;
+      my_rock.scale.z = 0.4;
+      my_rock.position.y = Math.random()*5+5;
+
+      rock_direction.rotation.x = 0;
+      rock_direction.rotation.y = 0;
+      rock_direction.rotation.z = Math.PI*2;
+      rock_direction.side = Math.round(Math.random());
+      rock_direction.dir = 1;
+      
+      rock_direction.add(my_rock);
+      scene.add(rock_direction);
+
+      rocks.push(rock_direction);
+    }
+
+    function modelLoaded(geometry, materials){
+      planet = new THREE.Mesh(geometry, new THREE.MeshNormalMaterial());
+      scene.add(planet);
+      camera.lookAt(planet.position);
+    }
+  </script>
+</body>
+</html>

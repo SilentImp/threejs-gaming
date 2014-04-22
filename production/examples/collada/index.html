@@ -36,15 +36,15 @@
         collada_loader = new THREE.ColladaLoader();
 
         camera.position.x = 0;
-        camera.position.y = 0;
-        camera.position.z = -2;
-        camera.lookAt(new THREE.Vector3(0,1,0));
+        camera.position.y = 2;
+        camera.position.z = 3;
+        camera.lookAt(new THREE.Vector3(0,0,0));
 
-        var light = new THREE.HemisphereLight(0xffffff, 0x333333, .75);
+        var light = new THREE.HemisphereLight(0xffffff, 0x333333, 1);
         scene.add(light);
 
         collada = null;
-        collada_loader.load('dae/human.dae', modelLoaded);
+        collada_loader.load('dae/planet.dae', modelLoaded);
         renderer.setSize(800, 600);
 
         function render() {
@@ -59,7 +59,7 @@
           collada = result.scene;
           scene.add(collada);
 
-
+          // camera = collada.children[0];
           collada.rotation.x = -90;
           
           console.dir(result)
@@ -68,7 +68,7 @@
           var loadedGemetries = result.dae.geometries; // Array of loaded THREE.Geometry objects
           var loadedMaterials = result.dae.materials;  // Array of loaded THREE.Material objects
 
-          console.log(result.dae.images)
+          // console.log(result.dae.images)
           // console.log(loadedGemetries);
           // console.log(loadedMaterials);
 
